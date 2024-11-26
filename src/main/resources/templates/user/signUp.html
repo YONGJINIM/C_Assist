@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <!-- CSS 연결 -->
+  <link rel="stylesheet" th:href="@{/css/signup.css}">
+  <!-- Flatpickr 스타일 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+</head>
+<body>
+  <div class="container">
+  <h1>회원가입</h1>
+  <form>
+    <!-- 아이디 입력 -->
+    <label for="userId">아이디</label>
+    <div class="d-flex">
+      <input type="text" id="userId" placeholder="아이디">
+      <button type="button" class="check-btn">중복확인</button>
+    </div>
+    <span class="success-msg">사용 가능한 아이디입니다.</span>
+    <span class="error-msg">아이디가 중복입니다.</span>
+
+    <!-- 비밀번호 입력 -->
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" placeholder="비밀번호를 입력해주세요.">
+    <span>비밀번호는 8 ~ 12자리로 입력해주세요.</span>
+
+    <!-- 비밀번호 확인 -->
+    <label for="confirmPassword">비밀번호 확인</label>
+    <input type="password" id="confirmPassword" placeholder="비밀번호를 한번 더 입력해주세요.">
+    <span>비밀번호가 일치하지 않습니다.</span>
+
+    <!-- 이름 입력 -->
+    <label for="name">이름</label>
+    <input type="text" id="name" placeholder="이름을 입력해주세요.">
+
+    <!-- 직책 선택 -->
+    <label for="position">직책</label>
+    <select id="position">
+      <option value="사원">사원</option>
+      <option value="주임">주임</option>
+      <option value="대리">대리</option>
+      <option value="차장">차장</option>
+      <option value="부장">부장</option>
+      <option value="이사">이사</option>
+      <option value="상무">상무</option>
+      <option value="전무">전무</option>
+      <option value="부사장">부사장</option>
+      <option value="사장">사장</option>
+    </select>
+
+    <!-- 소속 선택 -->
+    <label for="department">소속</label>
+    <select id="department">
+      <option value="국내영업 1부">국내영업 1부</option>
+      <option value="국내영업 2부">국내영업 2부</option>
+      <option value="해외영업">해외영업</option>
+      <option value="영업지원">영업지원</option>
+      <option value="시스템개발">시스템개발</option>
+      <option value="클라우드">클라우드</option>
+      <option value="AI인공지능">AI인공지능</option>
+      <option value="전략기획실">전략기획실</option>
+      <option value="의료기기인증">의료기기인증</option>
+    </select>
+
+    <!-- 입사일 -->
+    <label for="joiningDate">입사일</label>
+    <input type="text" id="joiningDate" placeholder="입사일을 선택해주세요.">
+
+    <!-- 이메일 -->
+    <label for="email">이메일</label>
+    <input type="email" id="email" placeholder="이메일을 입력해주세요.">
+    
+    <!-- 휴대폰 번호 -->
+    <label for="mobile number">휴대폰 전화</label>
+    <input type="mobile number" id="mobile number" placeholder="- 빼고 입력해주세요">
+
+    <!-- 버튼 -->
+    <div class="d-flex space-between">
+      <button type="button">가입하기</button>
+      <button type="button">뒤로가기</button>
+    </div>
+  </form>
+</div>
+    </form>
+  </div>
+
+  <!-- Flatpickr 스크립트 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+  <script>
+    // Flatpickr 초기화
+    flatpickr("#joiningDate", {
+      dateFormat: "Y-m-d", // 날짜 형식 설정
+      locale: "ko" // 한글 설정
+    });
+  </script>
+</body>
+</html>
