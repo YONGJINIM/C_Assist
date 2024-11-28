@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
     <!-- CSS 파일 연결 -->
-    <link rel="stylesheet" th:href="@{/css/signin.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <div class="login-container">
@@ -23,7 +23,7 @@
             </div>
             <input type="submit" id="loginBtn" class="btn btn-login" value="로그인">
             <div class="additional-links">
-                <a href="#">아이디/비밀번호를 잊으셨습니까?</a>
+                <a href="/user/find-idpw-view">아이디/비밀번호를 잊으셨습니까?</a>
                 <a href="/user/sign-up-view">회원가입</a>
             </div>
         </form>

@@ -1,0 +1,268 @@
+/* Reset */
+body, h1, p, form, input, label, a, select, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 공통 컨테이너 */
+.container, .login-container {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 400px;
+    max-height: 90vh; /* 화면 높이의 90%까지만 사용 */
+    overflow-y: auto; /* 내부 스크롤 활성화 */
+}
+
+/* 공통 제목 */
+h1, .login-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* 공통 레이블과 입력 스타일 */
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+/* 에러 및 성공 메시지 */
+.error-message, .error-msg, .success-msg, span {
+    font-size: 0.8rem;
+    color: red;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.success-msg {
+    color: green;
+}
+
+/* 공통 버튼 */
+button, .btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+button:hover, .btn:hover {
+    background-color: #444;
+}
+
+.btn-signup {
+    margin-top: 10px;
+}
+
+/* 공통 Flex 정렬 */
+.d-flex {
+    display: flex;
+    gap: 10px;
+}
+
+.d-flex input {
+    flex: 1;
+}
+
+.d-flex .check-btn {
+    flex: none;
+    width: 100px;
+    text-align: center;
+}
+
+/* 버튼 영역 정렬 */
+.space-between {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+
+.space-between button {
+    width: 48%;
+}
+
+/* 추가 링크 */
+.additional-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.additional-links a {
+    color: #000;
+    text-decoration: none;
+}
+
+.additional-links a:hover {
+    text-decoration: underline;
+}
+
+/* 뷰포트 높이가 작을 때 여백 조정 */
+@media (max-height: 800px) {
+    .container {
+        margin-top: 0;
+        max-height: 85vh;
+    }
+}
+
+/* 탭 버튼 스타일 */
+.tab-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+.tab-buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-buttons button.active {
+    border-bottom: 2px solid #000; /* 활성화된 탭의 하단 강조 */
+    background-color: #fff;
+    font-weight: bold;
+    color: #000;
+}
+
+.tab-buttons button:hover {
+    background-color: #ddd; /* 호버 시 색상 */
+}
+
+/* 탭 내용 숨김 처리 */
+.tab-content {
+    display: none; /* 기본적으로 숨김 */
+}
+
+.tab-content.active {
+    display: block; /* 활성화된 탭만 표시 */
+}
+/* 아이디 찾기 화면 스타일 */
+.tab-content {
+    text-align: center;
+}
+
+.tab-content h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.tab-content p {
+    margin: 20px 0;
+    font-size: 1rem;
+}
+
+.space-between button {
+    margin: 0 5px;
+}
+
+/* 숨김 상태 */
+.tab-content {
+    display: none; /* 기본적으로 숨김 처리 */
+}
+
+.tab-content.active {
+    display: block; /* 활성화된 콘텐츠만 표시 */
+}
+/* 비밀번호 찾기 화면 스타일 추가 */
+#failure-content, #success-content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#failure-content h1, #success-content h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* 실패 메시지 스타일 */
+#failure-content .error-msg {
+    color: red;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* 성공 메시지 스타일 */
+#success-content .success-msg {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#success-content .warning-msg {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+/* 버튼 스타일 (공통) */
+#failure-content .btn, #success-content .btn {
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%; /* 버튼 너비 조정 */
+    margin: 0 5px;
+}
+
+#failure-content .btn:hover, #success-content .btn:hover {
+    background-color: #444;
+}
+
+/* 버튼 컨테이너 스타일 */
+#failure-content .space-between, #success-content .space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}

@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>회원가입</title>
+  
   <!-- CSS 연결 -->
-  <link rel="stylesheet" th:href="@{/css/signup.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  
   <!-- Flatpickr 스타일 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
 </head>
@@ -17,10 +19,11 @@
     <label for="userId">아이디</label>
     <div class="d-flex">
       <input type="text" id="userId" placeholder="아이디">
-      <button type="button" class="check-btn">중복확인</button>
+      <button type="button" id="check-btn" class="check-btn">중복확인</button>
     </div>
-    <span class="success-msg">사용 가능한 아이디입니다.</span>
-    <span class="error-msg">아이디가 중복입니다.</span>
+    <span id="idCheckLength" class="error-msg">아이디를 4자 이상 입력해주세요.</span>
+    <span id="idCheckOk" class="success-msg">사용 가능한 아이디입니다.</span>
+    <span id="idCheckDuplicated" class="error-msg">이미 사용중인 아이디입니다.</span>
 
     <!-- 비밀번호 입력 -->
     <label for="password">비밀번호</label>
@@ -84,8 +87,6 @@
     </div>
   </form>
 </div>
-    </form>
-  </div>
 
   <!-- Flatpickr 스크립트 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
@@ -94,6 +95,26 @@
     flatpickr("#joiningDate", {
       dateFormat: "Y-m-d", // 날짜 형식 설정
       locale: "ko" // 한글 설정
+    });
+    
+    $(document).ready(function() {
+      // 중복확인
+      $("#check-btn").on("click", function() {
+    	 alert("중복확인");
+        // 문구들 안 보이게 초기화 
+        $("#idCheckLength").addClass("d-none");
+        $("#idCheckDuplicated").addClass("d-none");
+        $("#idCheckOk").addClass("d-none");
+        
+        let userId = $("#userId").val().trim();
+        
+        // validation
+        if (userId.length < 4) {
+          $("#idCheckLength").removeClass("d-none");
+          return;
+        }
+        // 아이디 중복확인 로직을 추가하세요.
+      });
     });
   </script>
 </body>

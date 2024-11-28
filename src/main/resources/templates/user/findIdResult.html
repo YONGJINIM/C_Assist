@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>아이디 찾기</title>
+    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <main class="container">
+        <!-- 실패 화면 -->
+        <section id="failure-content" class="tab-content active">
+            <h1>아이디 찾기</h1>
+            <p class="error-msg" th:text="${errorMsg != null ? errorMsg : '정보가 일치하지 않습니다.'}"></p>
+            <div class="space-between">
+                <button type="button" class="btn" onclick="retrySearch()">다시찾기</button>
+                <button type="button" class="btn" onclick="goToLogin()">로그인</button>
+            </div>
+        </section>
+
+        <!-- 성공 화면 -->
+        <section id="success-content" class="tab-content">
+            <h1>아이디 찾기</h1>
+            <p class="success-msg">회원님의 아이디는 <span th:text="${userId}">[예시ID]</span>입니다.</p>
+            <div class="space-between">
+                <button type="button" class="btn" onclick="goToLogin()">로그인</button>
+                <button type="button" class="btn" onclick="findPassword()">비밀번호 찾기</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript 파일 연결 -->
+    <script></script>
+</body>
+</html>

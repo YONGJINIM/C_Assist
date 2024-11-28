@@ -26,4 +26,16 @@ public class UserController {
 	public String findIdPwView() {
 		return "user/findIdPw";
 	}
+	
+	// 아이디 찾기 결과 
+	@GetMapping("/find-idresult-view")
+	public String findIdResultView() {
+		return "user/findIdResult";
+	}
+	
+	// 비밀번호 찾기 결과 
+	@GetMapping("/find-pwresult-view")
+	public String findPwResultView() {
+		return "user/findPwResult";
+	}	
 }

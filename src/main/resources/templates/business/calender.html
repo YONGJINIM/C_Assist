@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<body>
+    <section layout:fragment="content" class="contents">
+        <div id="calendar"></div> <!-- 캘린더가 렌더링될 div -->
+        <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
+        <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    headerToolbar: { // 캘린더 헤더 설정
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,dayGridWeek'
+                    },
+                    buttonText: { // 버튼 텍스트 설정
+                        today: '오늘',
+                        month: '월간',
+                        week: '주간'
+                    },
+                    locale: 'ko' // 한국어 설정
+                });
+                calendar.render();
+            });
+        </script>
+    </section>
+</body>
+</html>
