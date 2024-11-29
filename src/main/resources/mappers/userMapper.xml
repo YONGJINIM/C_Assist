@@ -3,10 +3,19 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.assist.user.mapper.UserMapper">
+	<!-- test -->
 	<select id="selectUserList" resultType="map">
 		SELECT
 			*
 		FROM
 			`user`
 	</select>
+	<!-- loginId -->
+	<select id="selectUserByUserId" resultType="boolean">
+    SELECT EXISTS (
+        SELECT 1
+        FROM `user`
+        WHERE `loginId` = #{loginId}
+    )
+</select>
 </mapper>

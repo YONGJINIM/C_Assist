@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입</title>
+  <!-- bootstrap CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   
   <!-- CSS 연결 -->
   <link rel="stylesheet" th:href="@{/css/style.css}">
-  
+  <title>회원가입</title>
+    
   <!-- Flatpickr 스타일 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
 </head>
@@ -18,12 +22,12 @@
     <!-- 아이디 입력 -->
     <label for="userId">아이디</label>
     <div class="d-flex">
-      <input type="text" id="userId" placeholder="아이디">
+      <input type="text" id="userId" placeholder="아이디를 입력해주세요.">
       <button type="button" id="check-btn" class="check-btn">중복확인</button>
     </div>
-    <span id="idCheckLength" class="error-msg">아이디를 4자 이상 입력해주세요.</span>
-    <span id="idCheckOk" class="success-msg">사용 가능한 아이디입니다.</span>
-    <span id="idCheckDuplicated" class="error-msg">이미 사용중인 아이디입니다.</span>
+	<span id="idCheckLength" class="error-msg d-none">아이디는 영문자와 숫자만 포함하며 4~12자리여야 합니다.</span>
+	<span id="idCheckOk" class="success-msg d-none">사용 가능한 아이디입니다.</span>
+	<span id="idCheckDuplicated" class="error-msg d-none">이미 사용중인 아이디입니다.</span>
 
     <!-- 비밀번호 입력 -->
     <label for="password">비밀번호</label>
@@ -77,8 +81,8 @@
     <input type="email" id="email" placeholder="이메일을 입력해주세요.">
     
     <!-- 휴대폰 번호 -->
-    <label for="mobile number">휴대폰 전화</label>
-    <input type="mobile number" id="mobile number" placeholder="- 빼고 입력해주세요">
+    <label for="mobilenumber">전화</label>
+    <input type="mobilenumber" id="mobilenumber" placeholder="- 빼고 입력해주세요">
 
     <!-- 버튼 -->
     <div class="d-flex space-between">
@@ -90,32 +94,47 @@
 
   <!-- Flatpickr 스크립트 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
-  <script>
-    // Flatpickr 초기화
-    flatpickr("#joiningDate", {
-      dateFormat: "Y-m-d", // 날짜 형식 설정
-      locale: "ko" // 한글 설정
-    });
+   
+   <script>
+    flatpickr("#joiningDate", { dateFormat: "Y-m-d", locale: "ko" });
     
     $(document).ready(function() {
-      // 중복확인
-      $("#check-btn").on("click", function() {
-    	 alert("중복확인");
-        // 문구들 안 보이게 초기화 
-        $("#idCheckLength").addClass("d-none");
-        $("#idCheckDuplicated").addClass("d-none");
-        $("#idCheckOk").addClass("d-none");
+     	// 중복 확인 
+    	$("#check-btn").on("click", function() {
+        
+        // 문구 초기화 
+        $("#idCheckLength, #idCheckDuplicated, #idCheckOk").addClass("d-none");
         
         let userId = $("#userId").val().trim();
+        let idRegex = /^[a-zA-Z0-9]{4,12}$/;
         
-        // validation
-        if (userId.length < 4) {
-          $("#idCheckLength").removeClass("d-none");
-          return;
-        }
-        // 아이디 중복확인 로직을 추가하세요.
-      });
-    });
+	    // 정규식 검증
+	    if (!idRegex.test(userId)) {
+	      $("#idCheckLength").removeClass("d-none");
+	      return;
+	    }
+	    
+	    // AJAX
+	    $.ajax({
+	      url: "/user/is-duplicate-id",
+	      data: { "loginId": userId },
+	      success: function(data) {
+	        if (data.code == 200) {
+	          if (data.is_duplicate_id) {
+	            // 중복
+	            $("#idCheckDuplicated").removeClass("d-none");
+	          } else {
+	            // 사용 가능
+	            $("#idCheckOk").removeClass("d-none");
+	          }
+	        }
+	      },
+	      error: function(e) {
+	        alert("중복확인에 실패했습니다.");
+	      }
+	    }); // Close the AJAX call
+	  }); 
+	});
   </script>
 </body>
 </html>
