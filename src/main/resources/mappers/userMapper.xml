@@ -17,5 +17,5 @@
         FROM `user`
         WHERE `loginId` = #{loginId}
     )
-</select>
+	</select>
 </mapper>

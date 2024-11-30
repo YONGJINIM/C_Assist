@@ -13,6 +13,6 @@ public interface UserMapper {
 	// test
 	public List<Map<String, Object>> selectUserList();
 
-	 boolean selectUserByUserId(String loginId); 
+	boolean selectUserByUserId(String loginId); 
 }
 	

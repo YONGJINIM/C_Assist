@@ -85,8 +85,29 @@ button:hover, .btn:hover {
     background-color: #444;
 }
 
+/* 버튼 영역 정렬 */
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* 동일한 크기의 버튼 */
+.space-between .btn {
+    flex: 1; /* 버튼들이 동일한 너비를 갖도록 */
+    margin: 0 5px; /* 버튼 간 간격 */
+    height: 40px; /* 버튼 높이 설정 */
+}
+
+/* 뒤로가기 버튼 */
+.btn-back {
+    text-align: center; /* 뒤로가기 버튼 텍스트 가운데 정렬 */
+}
+
+/* 회원가입 버튼 */
 .btn-signup {
-    margin-top: 10px;
+    text-align: center; /* 회원가입 버튼 텍스트 가운데 정렬 */
 }
 
 /* 공통 Flex 정렬 */
@@ -271,3 +292,16 @@ button:hover, .btn:hover {
     align-items: center;
     margin-top: 20px;
 }
+ .error-msg, .success-msg {
+      font-size: 0.8rem;
+      margin-top: -5px;
+    }
+    .error-msg {
+      color: red;
+    }
+    .success-msg {
+      color: green;
+    }
+    .d-none {
+      display: none;
+    }

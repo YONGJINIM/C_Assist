@@ -27,4 +27,6 @@ public class UserRestController {
 		 result.put("is_duplicate_id", isDuplicate); // 중복 여부
 		 return result;
 	 }
+	 
+	 
 }
