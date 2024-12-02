@@ -3,31 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <!-- bootstrap CDN -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   
-  <!-- CSS 연결 -->
+  <!-- CSS & Flatpickr-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <title>회원가입</title>
     
-  <!-- Flatpickr 스타일 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
 </head>
 <body>
   <div class="container">
   <h1>회원가입</h1>
   <form id="signUpForm" method="post" action="/user/sign-up">
+   
     <!-- 아이디 입력 -->
     <label for="userId">아이디</label>
     <div class="d-flex">
       <input type="text" id="userId" placeholder="아이디를 입력해주세요.">
       <button type="button" id="check-btn" class="check-btn">중복확인</button>
     </div>
-	<span id="idCheckLength" class="error-msg d-none">아이디는 영문자와 숫자만 포함하며 4~12자리여야 합니다.</span>
+	<span id="idCheckError" class="error-msg d-none">아이디는 영문자와 숫자만 포함하며 4~12자리여야 합니다.</span>
 	<span id="idCheckOk" class="success-msg d-none">사용 가능한 아이디입니다.</span>
 	<span id="idCheckDuplicated" class="error-msg d-none">이미 사용중인 아이디입니다.</span>
+	<span id="userIdError" class="error-msg d-none">아이디를 입력해주세요.</span>
+	
 
 	<!-- 비밀번호 입력 -->
 	<label for="password">비밀번호</label>
@@ -42,51 +45,55 @@
     <!-- 이름 -->
     <label for="name">이름</label>
     <input type="text" id="name" placeholder="이름을 입력해주세요.">
-    <span id="nameError" class="error-msg d-none">이름은 한글만 입력 가능합니다.</span>
+    <span id="nameError" class="error-msg d-none">2글자 이상인 한글 이름을 입력해주세요.</span>
 
-	    <!-- 직책 선택 -->
-	  <label for="position">직책</label>
-	  <select id="position">
-	  <option value="" disabled selected>직책을 선택해주세요.</option>
-	  <option value="사원">사원</option>
-	  <option value="주임">주임</option>
-	  <option value="대리">대리</option>
-	  <option value="차장">차장</option>
-	  <option value="부장">부장</option>
-	  <option value="이사">이사</option>
-	  <option value="상무">상무</option>
-	  <option value="전무">전무</option>
-	  <option value="부사장">부사장</option>
-	  <option value="사장">사장</option>
+	<!-- 직책 선택 -->
+	<label for="position">직책</label>
+	<select id="position">
+	<option value="" disabled selected>직책을 선택해주세요.</option>
+	<option value="사원">사원</option>
+	<option value="주임">주임</option>
+	<option value="대리">대리</option>
+	<option value="차장">차장</option>
+	<option value="부장">부장</option>
+	<option value="이사">이사</option>
+	<option value="상무">상무</option>
+	<option value="전무">전무</option>
+	<option value="부사장">부사장</option>
+	<option value="사장">사장</option>
 	</select>
+	<span id="positionError" class="text-danger d-none">직책을 선택해주세요.</span>
 	
 	<!-- 소속 선택 -->
-	  <label for="department">소속</label>
-	  <select id="department">
-	  <option value="" disabled selected>소속을 선택해주세요.</option>
-	  <option value="국내영업 1부">국내영업 1부</option>
-	  <option value="국내영업 2부">국내영업 2부</option>
-	  <option value="해외영업">해외영업</option>
-	  <option value="영업지원">영업지원</option>
-	  <option value="시스템개발">시스템개발</option>
-	  <option value="클라우드">클라우드</option>
-	  <option value="AI인공지능">AI인공지능</option>
-	  <option value="전략기획실">전략기획실</option>
-	  <option value="의료기기인증">의료기기인증</option>
+	<label for="department">소속</label>
+	<select id="department">
+	<option value="" disabled selected>소속을 선택해주세요.</option>
+	<option value="국내영업 1부">국내영업 1부</option>
+	<option value="국내영업 2부">국내영업 2부</option>
+	<option value="해외영업">해외영업</option>
+	<option value="영업지원">영업지원</option>
+	<option value="시스템개발">시스템개발</option>
+	<option value="클라우드">클라우드</option>
+	<option value="AI인공지능">AI인공지능</option>
+	<option value="전략기획실">전략기획실</option>
+	<option value="의료기기인증">의료기기인증</option>
 	</select>
-
+ 	<span id="departmentError" class="text-danger d-none">소속을 선택해주세요.</span>
+    
     <!-- 입사일 -->
     <label for="joiningDate">입사일</label>
     <input type="text" id="joiningDate" placeholder="입사일을 선택해주세요.">
-
+	<span id="joiningDateError" class="text-danger d-none">입사일을 선택해주세요.</span>
+	 
     <!-- 이메일 -->
     <label for="email">이메일</label>
     <input type="email" id="email" placeholder="이메일을 입력해주세요.">
-    <span id="emailError" class="error-msg d-none">유효한 이메일 형식이 아닙니다.</span>
+    <span id="emailError" class="text-danger d-none">올바른 이메일 형식을 입력해주세요.</span>
     
     <!-- 휴대폰 번호 -->
     <label for="mobilenumber">전화</label>
     <input type="mobilenumber" id="mobilenumber" placeholder="- 빼고 입력해주세요">
+	<span id="mobilenumberError" class="error-msg d-none">11자리 숫자로 입력해주세요.</span>
 
     <!-- 버튼 -->
 	<div class="space-between d-flex">
@@ -106,108 +113,159 @@
 	    minDate: "today", // 오늘 날짜부터 선택 가능
 	});
     
-    $(document).ready(function() {
-     	// 중복 확인 
-    	$("#check-btn").on("click", function() {
-        
-        // 문구 초기화 
-        $("#idCheckLength, #idCheckDuplicated, #idCheckOk").addClass("d-none");
-        
-        let userId = $("#userId").val().trim();
-        let idRegex = /^[a-zA-Z0-9]{4,12}$/;
-        
-	    // 정규식 검증
-	    if (!idRegex.test(userId)) {
-	      $("#idCheckLength").removeClass("d-none");
-	      return;
-	    }
-	    
-	    // AJAX
-	    $.ajax({
-	      url: "/user/is-duplicate-id",
-	      data: { "loginId": userId },
-	      success: function(data) {
-	        if (data.code == 200) {
-	          if (data.is_duplicate_id) {
-	            // 중복
-	            $("#idCheckDuplicated").removeClass("d-none");
-	          } else {
-	            // 사용 가능
-	            $("#idCheckOk").removeClass("d-none");
-	          }
+   $(document).ready(function () {
+	    // 중복 확인 이벤트
+	    $("#check-btn").on("click", function () {
+	        $("#idCheckError, #idCheckDuplicated, #idCheckOk").addClass("d-none");
+	        let userId = $("#userId").val().trim();
+	        let idRegex = /^[a-zA-Z0-9]{4,12}$/;
+
+	        if (!idRegex.test(userId)) {
+	            $("#idCheckError").removeClass("d-none");
+	            return;
 	        }
-	      },
-	      error: function(e) {
-	        alert("중복확인에 실패했습니다.");
-	      }
+
+	        $.ajax({
+	            url: "/user/is-duplicate-id",
+	            data: { "loginId": userId },
+	            success: function (data) {
+	                if (data.code == 200) {
+	                    if (data.is_duplicate_id) {
+	                        $("#idCheckDuplicated").removeClass("d-none");
+	                    } else {
+	                        $("#idCheckOk").removeClass("d-none");
+	                    }
+	                }
+	            },
+	            error: function () {
+	                alert("중복확인에 실패했습니다.");
+	            }
+	        });
 	    });
-	  }); 
-	    
-    	$(document).ready(function () {
-    	    // 비밀번호 유효성 검사
-    	    $("#password").on("blur", function () {
-    	        let password = $(this).val().trim();
-    	        if (password.length < 8 || password.length > 12) {
-    	            $("#passwordError").removeClass("d-none"); // 에러 메시지 표시
-    	        } else {
-    	            $("#passwordError").addClass("d-none"); // 에러 메시지 숨김
-    	        }
-    	    });
 
-    	    // 비밀번호 확인창 유효성 검사
-    	    $("#confirmPassword").on("blur", function () {
-    	        let password = $("#password").val().trim();
-    	        let confirmPassword = $(this).val().trim();
-    	        if (password !== confirmPassword) {
-    	            $("#confirmPasswordError").removeClass("d-none"); // 에러 메시지 표시
-    	        } else {
-    	            $("#confirmPasswordError").addClass("d-none"); // 에러 메시지 숨김
-    	        }
-    	    });
-    	    
-    	      // 이름 검증
-    	      $("#name").on("blur", function() {
-    	        const name = $(this).val();
-    	        const nameRegex = /^[가-힣]+$/;
-    	        if (!nameRegex.test(name)) {
-    	          $("#nameError").removeClass("d-none");
-    	        } else {
-    	          $("#nameError").addClass("d-none");
-    	        }
-    	     });
+	    // 실시간 필드 검증
+	    $("#password").on("input", function () {
+	        const value = $(this).val().trim();
+	        if (value.length < 8 || value.length > 12) {
+	            $("#passwordError").removeClass("d-none");
+	        } else {
+	            $("#passwordError").addClass("d-none");
+	        }
+	    });
 
-    	      // 이메일 검증
-    	      $("#email").on("blur", function() {
-    	        const email = $(this).val();
-    	        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    	        if (!emailRegex.test(email)) {
-    	          $("#emailError").removeClass("d-none");
-    	        } else {
-    	          $("#emailError").addClass("d-none");
-    	        }
-    	      });
-     	
- 	
-     	// 회원가입
-	    $("#signUpForm").on("submit", function(e){	  
-	    	e.preventDefault();
-	    	//alert("회원가입");
-	    	
-	    	// validation
-			let userId = $("#userId").val().trim(); // 유저 아이디 
-			let password = $("#password").val(); // 유저 비밀번호 
-			let confirmPassword = $("#confirmPassword").val(); // 유저 비밀번호 재확인 
-			let name = $("#name").val().trim(); // 유저 이름 
-			let position = $("#position").val(); // 유저 직책
-			let department = $("#department").val(); // 소속
-			let joiningDate = $("#joiningDate").val(); // 입사일 
-			let email = $("#email").val().trim(); // 이메일 
-			let mobilenumber = $("#mobilenumber").val().trim(); // 번호 
-		    
-	 		
-	    	});
-    	});
+	    $("#confirmPassword").on("input", function () {
+	        const value = $(this).val().trim();
+	        if (value !== $("#password").val()) {
+	            $("#confirmPasswordError").removeClass("d-none");
+	        } else {
+	            $("#confirmPasswordError").addClass("d-none");
+	        }
+	    });
+
+	    $("#name").on("input", function () {
+	        const value = $(this).val().trim();
+	        if (!/^[가-힣]{2,}$/.test(value)) {
+	            $("#nameError").removeClass("d-none");
+	        } else {
+	            $("#nameError").addClass("d-none");
+	        }
+	    });
+
+	    $("#email").on("input", function () {
+	        const value = $(this).val().trim();
+	        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+	            $("#emailError").removeClass("d-none");
+	        } else {
+	            $("#emailError").addClass("d-none");
+	        }
+	    });
+
+	    $("#mobilenumber").on("input", function () {
+	        const value = $(this).val().trim();
+	        if (!/^[0-9]{11}$/.test(value)) {
+	            $("#mobilenumberError").removeClass("d-none");
+	        } else {
+	            $("#mobilenumberError").addClass("d-none");
+	        }
+	    });
+
+	    $("#signUpForm").on("submit", function (e) {
+	        e.preventDefault(); // 기본 제출 방지	       
+
+	        let requiredFields = [
+	            "#userId",
+	            "#password",
+	            "#confirmPassword",
+	            "#name",
+	            "#position",
+	            "#department",
+	            "#joiningDate",
+	            "#mobilenumber",
+	            "#email",
+	        ];
+
+	        // 모든 필드의 값 확인
+	        let isValid = requiredFields.every((selector) => {
+	        let field = $(selector);
+	      	  if (field.val().trim() === "") {
+	          	field.addClass("is-invalid"); // CSS로 빨간색 테두리
+	          	return false;
+	          } else {
+	          	field.removeClass("is-invalid");
+	          	field.addClass("is-valid"); // 유효한 경우 초록색 테두리
+	          	return true;
+	          }
+	     });
+
+	        if (!isValid) {
+	            alert("모든 필드를 올바르게 입력했는지 확인해주세요.");
+	            return;
+	        }
+	        
+	        // 비밀번호와 확인 비밀번호 일치 여부 확인
+	        let password = $("#password").val();
+	        let confirmPassword = $("#confirmPassword").val();
+	        if (password !== confirmPassword) {
+	            isValid = false;
+	            $("#confirmPassword").addClass("is-invalid");
+	            alert("비밀번호가 일치하지 않습니다.");
+	        } else {
+	            $("#confirmPassword").removeClass("is-invalid");
+	            $("#confirmPassword").addClass("is-valid");
+	        }
+
+
+	        // 모든 필드가 유효하면 AJAX 요청
+	        let formData = {
+	            "loginId": $("#userId").val(),
+	            "password": $("#password").val(),
+	            "name": $("#name").val(),
+	            "position": $("#position").val(),
+	            "division": $("#department").val(),
+	            "startDate": $("#joiningDate").val(),
+	            "phoneNumber": $("#mobilenumber").val(),
+	            "email": $("#email").val(),
+	            "remainingLeave": 10, // default 값
+	        };
+
+	        $.ajax({
+	            url: '/user/sign-up',
+	            type: 'POST',
+	            data: formData,
+	            success: function (response) {
+	                if (response.code == 200) {
+	                    alert("회원가입이 성공적으로 완료되었습니다.");
+	                    window.location.href = '/user/sign-in-view'; // 회원가입 후 로그인 화면으로 리다이렉트
+	                } else {
+	                    alert("회원가입 중 오류가 발생했습니다.");
+	                }
+	            },
+	            error: function () {
+	                alert("서버와의 연결에 문제가 발생했습니다.");
+	            }
+	        });
+	    });
    });
-  </script>
+</script>
 </body>
 </html>

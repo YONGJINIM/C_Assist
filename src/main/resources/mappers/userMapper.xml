@@ -10,7 +10,7 @@
 		FROM
 			`user`
 	</select>
-	<!-- loginId -->
+	<!-- loginId 중복확인-->
 	<select id="selectUserByUserId" resultType="boolean">
     SELECT EXISTS (
         SELECT 1
@@ -18,4 +18,37 @@
         WHERE `loginId` = #{loginId}
     )
 	</select>
+	<!-- 회원가입-->
+	<insert id="insertUser" parameterType="map">
+		INSERT INTO `user`
+		(
+			`loginId`
+			,`password`
+			,`salt`
+			,`remainingLeave`
+			,`name`
+			,`position`
+			,`division`
+			,`startDate`
+			,`phoneNumber`
+			,`email`
+			,`createdAt`
+			,`updateAt`
+		)
+		VALUES
+		(
+			#{loginId}
+			, #{password}
+			, #{salt}
+			, #{remainingLeave}
+			, #{name}
+			, #{position}
+			, #{division}
+			, #{startDate}
+			, #{phoneNumber}
+			, #{email}
+			, NOW()
+			, NOW()
+		)
+	</insert>
 </mapper>
