@@ -28,7 +28,8 @@ public interface UserMapper {
         @Param("division") String division,
         @Param("startDate") String startDate,
         @Param("phoneNumber") String phoneNumber,
-        @Param("email") String email
-    );
+        @Param("email") String email);
+    
+    public User selectUserByLoginId(@Param("loginId") String loginId);
 }
 	

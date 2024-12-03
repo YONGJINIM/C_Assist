@@ -33,7 +33,7 @@
 			,`phoneNumber`
 			,`email`
 			,`createdAt`
-			,`updateAt`
+			,`updatedAt`
 		)
 		VALUES
 		(
@@ -51,4 +51,24 @@
 			, NOW()
 		)
 	</insert>
+	<select id="selectUserByLoginId" resultType="com.assist.user.domain.User">
+	SELECT
+		`id`
+		,`loginId`
+		,`password`
+		,`remainingLeave`
+		,`name`
+		,`position`
+		,`division`
+		,`startDate`
+		,`phoneNumber`
+		,`email`
+		,`createdAt`
+		,`updatedAt`
+		,`salt`
+	FROM
+		`user`
+	WHERE
+		 `loginId` = #{loginId}
+	</select>
 </mapper>

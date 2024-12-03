@@ -37,5 +37,5 @@ public class UserController {
 	@GetMapping("/find-pwresult-view")
 	public String findPwResultView() {
 		return "user/findPwResult";
-	}	
+	}		
 }

@@ -222,7 +222,7 @@
 	            return;
 	        }
 	        
-	        // 비밀번호와 확인 비밀번호 일치 여부 확인
+	        // 한번 더 검증 비밀번호 일치 여부 확인
 	        let password = $("#password").val();
 	        let confirmPassword = $("#confirmPassword").val();
 	        if (password !== confirmPassword) {
@@ -252,8 +252,8 @@
 	            url: '/user/sign-up',
 	            type: 'POST',
 	            data: formData,
-	            success: function (response) {
-	                if (response.code == 200) {
+	            success: function(data) {
+	                if (data.code == 200) {
 	                    alert("회원가입이 성공적으로 완료되었습니다.");
 	                    window.location.href = '/user/sign-in-view'; // 회원가입 후 로그인 화면으로 리다이렉트
 	                } else {

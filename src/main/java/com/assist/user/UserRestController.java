@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.assist.user.bo.UserBO;
+import com.assist.user.domain.User;
+
+import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/user")
 @RestController
@@ -83,4 +88,30 @@ public class UserRestController {
 		     }
 		     return result;
 		 }
+	  	// 로그인
+	    @PostMapping("/sign-in")
+	    public Map<String, Object> signIn(
+	    		@RequestParam("loginId") String loginId,
+	    		@RequestParam("password") String password,
+	            HttpSession session) {
+
+	        Map<String, Object> result = new HashMap<>();
+
+	        // BO를 통해 로그인 처리
+	        User user = userBO.login(loginId, password);
+
+	        if (user != null) {
+	            // 세션 저장
+	            session.setAttribute("userId", user.getId());
+	            session.setAttribute("userLoginId", user.getLoginId());
+	            session.setAttribute("userName", user.getName());
+
+	            result.put("success", true); // 성공
+	            result.put("message", "로그인 성공!");
+	        } else {
+	            result.put("success", false); // 실패
+	            result.put("message", "아이디 또는 비밀번호를 확인해주세요.");
+	        }
+	        return result;
+	    }
 	}

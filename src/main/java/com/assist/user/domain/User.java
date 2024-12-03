@@ -17,6 +17,7 @@ public class User {
 	private Date startDate;
 	private String phoneNumber;
 	private String email;
+	private String salt;
 	private LocalDateTime createdAt;
 	private LocalDateTime updateAt;
 	
